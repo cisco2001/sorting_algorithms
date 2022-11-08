@@ -1,41 +1,34 @@
 #include "sort.h"
-#include <stdio.h>
 /**
- * swap - swaps two integers
- * @a: pointer to first number
- * @b: pointer to the second number
- */
-void swap(int *a, int *b)
-{
-int temp;
-temp = *a;
-*a = *b;
-*b = temp;
-}
-/**
- * bubble_sort - sorts an array of numbers
+ * bubble_sort - sorts bubbly
  * @array: array to sort
- * @size: size of the array
+ * @size: size
+ *
  */
 void bubble_sort(int *array, size_t size)
 {
-size_t i = 0, len = size;
-int bubbly = 0;
-if (array == NULL || size < 2)
-return;
+	size_t i, newsize = size;
+	int tmp, swap;
 
-while (bubbly == 0)
-{
-bubbly = 1;
-for (i = 0; i < len - 1; i++)
-{
-if (array[i] > array[i + 1])
-{
-swap(array + i, array + i + 1);
-print_array(array, size);
-bubbly = 0;
-}
-}
-len--;
-}
+	if (array == NULL || size < 2)
+		return;
+
+	while (newsize)
+	{
+		swap = 0;
+		for (i = 0; i < newsize - 1; i++)
+		{
+			if (array[i] > array[i + 1])
+			{
+				tmp = array[i + 1];
+				array[i + 1] = array[i];
+				array[i] = tmp;
+				print_array(array, size);
+				swap = 1;
+			}
+		}
+		newsize--;
+		if (!swap)
+			break;
+	}
 }
